@@ -1,3 +1,16 @@
+
+function timeCount(time){
+    let hour = parseInt(time/3600);
+
+    let remainingHour = time %3600; 
+
+    let minute = parseInt(remainingHour / 60);
+
+    let second = remainingHour % 60 ;
+
+    return `${hour} hour ${minute} minute ${second} second ago `
+}
+
 const loadCategories = () => {
     fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
     .then(res => res.json())
@@ -41,11 +54,18 @@ const displayVideo = (data) =>{
 
         card.innerHTML =
         `
-         <figure class="h-[150px]">
+         <figure class="h-[150px] relative">
     <img
       src=${video.thumbnail}
       class ="h-full w-full object-cover"
       alt="Shoes" />
+
+      ${
+        video.others.posted_date.length == 0 ? "" :
+         `<span class =" absolute right-2 bottom-2 text-white text-xs bg-black p-1">${timeCount(video.others.posted_date)}</span>`
+     }
+
+      
   </figure>
   <div class="px-0 py-4 flex  justify-center gap-3">
     <div>
