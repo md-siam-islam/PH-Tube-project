@@ -56,6 +56,26 @@ const displayVideo = (data) =>{
     let div = document.getElementById("video_container")
     div.innerHTML =""
 
+    if(data.length == 0){
+        div.classList.remove("grid")
+        div.innerHTML =
+        `
+        <div class = " flex flex-col justify-center items-center">
+        <img src="Icon.png" alt="" />
+
+        <h1 class = " text-2xl font-bold text-black pt-5">Oops! Sorry , There is no content Here </h1>
+        </div>
+        
+        
+        
+        `
+    }
+
+    else{
+
+        div.classList.add("grid")  
+    }
+
     data.forEach((video) =>{
         console.log(video);
 
